@@ -1,11 +1,11 @@
 name: first_day_of_the_week
 description: Flutter plugin for getting system's first day of the week.
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/Nizlan/first_day_of_the_week
 
 environment:
-  sdk: ^3.5.0
-  flutter: '>=3.3.0'
+  sdk: ^3.11.0
+  flutter: '>=3.41.0'
 
 dependencies:
   flutter:
