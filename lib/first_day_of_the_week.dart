@@ -1,16 +1,41 @@
 import 'first_day_of_the_week_platform_interface.dart';
 
 class FirstDayOfTheWeek {
-  /// 1 - Monday,
-  /// 2 - Tuesday,
-  /// 3 - Wednesday,
-  /// 4 - Thursday,
-  /// 5 - Friday,
-  /// 6 - Saturday
-  /// 7 - Sunday,
-  static int? value;
+  const FirstDayOfTheWeek({required this.defaultValue});
 
-  static Future<void> init() async {
-    value = await FirstDayOfTheWeekPlatform.instance.get();
+  final DayOfWeek defaultValue;
+
+  Future<DayOfWeek?> getValue() async {
+    final value = await FirstDayOfTheWeekPlatform.instance.get();
+    if (value == null) {
+      return null;
+    }
+    return DayOfWeek.fromValue(value);
+  }
+
+  Future<DayOfWeek> getValueOrDefault() async =>
+      await getValue() ?? defaultValue;
+}
+
+enum DayOfWeek {
+  monday(1),
+  tuesday(2),
+  wednesday(3),
+  thursday(4),
+  friday(5),
+  saturday(6),
+  sunday(7);
+
+  const DayOfWeek(this.value);
+
+  final int value;
+
+  static DayOfWeek? fromValue(int value) {
+    for (var day in DayOfWeek.values) {
+      if (day.value == value) {
+        return day;
+      }
+    }
+    return null;
   }
 }
