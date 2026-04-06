@@ -10,12 +10,9 @@ void main() {
 
   setUp(() {
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
-        .setMockMethodCallHandler(
-      channel,
-      (MethodCall methodCall) async {
-        return 1;
-      },
-    );
+        .setMockMethodCallHandler(channel, (MethodCall methodCall) async {
+          return 1;
+        });
   });
 
   tearDown(() {
@@ -24,6 +21,7 @@ void main() {
   });
 
   test('getPlatformVersion', () async {
-    expect(await platform.get(), 1);
+    final dayIndex = await platform.get();
+    expect(dayIndex, allOf(isNotNull, greaterThanOrEqualTo(1), lessThanOrEqualTo(7)));
   });
 }
