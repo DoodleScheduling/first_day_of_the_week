@@ -11,7 +11,19 @@ class MethodChannelFirstDayOfTheWeek extends FirstDayOfTheWeekPlatform {
 
   @override
   Future<int?> get() async {
-    final version = await methodChannel.invokeMethod<int>('getFirstDayOfWeek');
-    return version;
+    final platformDay = await methodChannel.invokeMethod<int>(
+      'getFirstDayOfWeek',
+    );
+    if (platformDay == null) {
+      return null;
+    }
+
+    // Both iOS (through Foundation's Calendar) and Android (Java Calendar) use
+    // 1 for Sunday, while Dart's DateTime uses 1 for Monday, which is in
+    // accordance with ISO 8601. Neither of them index any days to zero (days go
+    // from 1 through 7).
+    //
+    // Offset days by -1, skipping zero.
+    return ((platformDay - 2) % 7) + 1;
   }
 }
