@@ -26,8 +26,11 @@ void main() {
         MockFirstDayOfTheWeekPlatform();
     FirstDayOfTheWeekPlatform.instance = fakePlatform;
 
-    await FirstDayOfTheWeek.init();
-
-    expect(FirstDayOfTheWeek.value, 1);
+    expect(
+      await const FirstDayOfTheWeek(
+        defaultValue: DateTime.wednesday,
+      ).getValue(),
+      1,
+    );
   });
 }

@@ -15,8 +15,9 @@ void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   testWidgets('getPlatformVersion test', (WidgetTester tester) async {
-    await FirstDayOfTheWeek.init();
-    final int? firstDayOfWeek = FirstDayOfTheWeek.value;
+    final int? firstDayOfWeek =
+        await const FirstDayOfTheWeek(defaultValue: DateTime.wednesday)
+            .getValue();
     // The version string depends on the host platform running the test, so
     // just assert that some non-empty string is returned.
     expect(firstDayOfWeek, isNotNull);
