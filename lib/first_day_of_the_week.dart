@@ -18,13 +18,13 @@ class FirstDayOfTheWeek {
 }
 
 enum DayOfWeek {
-  monday(1),
-  tuesday(2),
-  wednesday(3),
-  thursday(4),
-  friday(5),
-  saturday(6),
-  sunday(7);
+  monday(DateTime.monday),
+  tuesday(DateTime.tuesday),
+  wednesday(DateTime.wednesday),
+  thursday(DateTime.thursday),
+  friday(DateTime.friday),
+  saturday(DateTime.saturday),
+  sunday(DateTime.sunday);
 
   const DayOfWeek(this.value);
 
